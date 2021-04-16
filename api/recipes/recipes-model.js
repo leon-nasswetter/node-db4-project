@@ -1,5 +1,9 @@
-function getById(recipe_id) {
-    return Promise.resolve(`test with id of ${recipe_id}`)
+const db = require("../../data/db-config")
+
+async function getById(recipe_id) {
+    const recipe = await db("recipes as r").where("recipe_id", recipe_id).first()
+
+    return recipe
 }
 
 module.exports = { getById }
